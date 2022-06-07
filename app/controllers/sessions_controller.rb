@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session["session_id"] = nil
     flash["notice"] = "Goodbye"
+    session["session_id"] = nil
     redirect_to "/login"
   end
 end
