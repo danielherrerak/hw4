@@ -1,26 +1,37 @@
-<h1><%= @place["name"] %></h1>
+<div class="container pt-4">
+  <div class="row mb-4"> 
+    
+      <h1><%= @place["name"] %></h1>
+      <% if @current_user %>  
+      <h2>My Posts</h2>
+      <p>
+        <a href="/posts/new?place_id=<%= @place["id"] %>" class="btn btn-success" >New Post</a>
+      </p>
 
-<% if @current_user %>  
-<h2>My Posts</h2>
+      <% for post in @posts %>
+       <div class="col-4 col-sm-4">
 
-<% for post in @posts %>
-  <h3><%= post["title"] %></h3>
-  <h4><%= post["posted_on"] %></h4>
-  <p><%= post["description"] %></p>
-  <% if post.uploaded_image.attached? %>
-      <img src="<%= url_for(post.uploaded_image) %>" class="img-fluid">
-  <% else %>
-  <% end %>
-<% end %>
+        <h3><%= post["title"] %></h3>
+        <h4><%= post["posted_on"] %></h4>
+        <p><%= post["description"] %></p>
+        <% if post.uploaded_image.attached? %>
+            <img src="<%= url_for(post.uploaded_image) %>" class="img-fluid">
+       </div>
+        <% else %>
+        <% end %>
+      <% end %>
+      
 
-<p>
-  <a href="/posts/new?place_id=<%= @place["id"] %>" class="btn btn-success" >New Post</a>
-</p>
+      <% else %>  
+        Please log in to view the content
+      <% end %>
 
-<% else %>  
-  Please log in to view the content
-<% end %>
+      <div class="container pt-3">
+      <p>
+        <a href="/places" class="btn btn-warning" >Back to All Places</a>
+      </p>
+      </div>
 
-<p>
-  <a href="/places" class="btn btn-warning" >Back to All Places</a>
-</p>
+
+  </div>
+</div>

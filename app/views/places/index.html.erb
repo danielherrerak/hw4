@@ -1,15 +1,23 @@
+<div class="container pt-4">
+  <div class="row mb-4"> 
+    <div class="col-4 col-sm-4">
+
 <h1>Places</h1>
 
 <% if @current_user %>  
+<p>
+  <a href="/places/new" class="btn btn-success" >New place</a>
+</p>
+<% else %>
+<% end %>
+
+
 <ul>
   <% for place in @places %>
     <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
   <% end %>
 </ul>
 
-<p>
-  <a href="/places/new">New place</a>
-</p>
-<% else %>
-  Please log in to view the content
-<% end %>
+   </div>
+  </div>
+</div>
